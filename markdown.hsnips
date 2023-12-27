@@ -1,0 +1,62 @@
+global
+
+function math(context) {
+    return context.scopes.some(s => s.includes('math') || s.startsWith('meta.math'));
+}
+
+endglobal
+
+snippet h3 "heading 3" A
+###
+endsnippet
+
+snippet h4 "heading 4" A
+####
+endsnippet
+
+context math(context)
+snippet `//` "simple fraction" A
+\\frac{$1}{$2}$0
+endsnippet
+
+context math(context)
+snippet * "times" A
+\\times$1
+endsnippet
+
+snippet km "inline math" wA
+$${1}$${2}
+endsnippet
+
+snippet dm "display math" A
+
+$$
+${1}
+$$
+${2}
+endsnippet
+
+context math(context)
+snippet `=>` "implies" A
+\\implies
+endsnippet
+
+context math(context)
+snippet `bino` "binomial coefficients" A
+\\binom{$1}{$2}$0
+endsnippet
+
+# context math(context)
+# snippet `->(\w+)` "vector" A
+# ``rv = '\\vec{' + m[1] + '}'``
+# endsnippet
+
+context math(context)
+snippet `(?<![\\a-zA-Z])(;D|Delta)` "\Delta" A
+\Delta $0
+endsnippet
+
+context math(context)
+snippet `(\\?[a-zA-Z]\w*|\\[^(^\s]+\})(,\.|\.,)` "Vector postfix" A
+\vec{``rv = m[1]``} $0
+endsnippet
